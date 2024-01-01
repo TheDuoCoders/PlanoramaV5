@@ -1,0 +1,14 @@
+D:\study\DotNet\PlanoramaV5\Planorama\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+D:\study\DotNet\PlanoramaV5\Planorama\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+D:\study\DotNet\PlanoramaV5\Planorama\BLL\bin\Debug\BLL.dll
+D:\study\DotNet\PlanoramaV5\Planorama\BLL\bin\Debug\BLL.pdb
+D:\study\DotNet\PlanoramaV5\Planorama\BLL\bin\Debug\AutoMapper.dll
+D:\study\DotNet\PlanoramaV5\Planorama\BLL\bin\Debug\DAL.dll
+D:\study\DotNet\PlanoramaV5\Planorama\BLL\bin\Debug\EntityFramework.dll
+D:\study\DotNet\PlanoramaV5\Planorama\BLL\bin\Debug\DAL.pdb
+D:\study\DotNet\PlanoramaV5\Planorama\BLL\bin\Debug\DAL.dll.config
+D:\study\DotNet\PlanoramaV5\Planorama\BLL\bin\Debug\AutoMapper.xml
+D:\study\DotNet\PlanoramaV5\Planorama\BLL\bin\Debug\EntityFramework.xml
+D:\study\DotNet\PlanoramaV5\Planorama\BLL\obj\Debug\BLL.csproj.CopyComplete
+D:\study\DotNet\PlanoramaV5\Planorama\BLL\obj\Debug\BLL.dll
+D:\study\DotNet\PlanoramaV5\Planorama\BLL\obj\Debug\BLL.pdb
