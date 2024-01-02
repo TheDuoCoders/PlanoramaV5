@@ -26,7 +26,7 @@ namespace BLL.Services
 
         public static FoodDTO Get(int id)
         {
-            var data = DataAccessFactory.FoodsCategoryData().Read(id);
+            var data = DataAccessFactory.FoodData().Read(id);
             var cfg = new MapperConfiguration(c =>
             {
                 c.CreateMap<Food, FoodDTO>();

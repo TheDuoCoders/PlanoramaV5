@@ -103,10 +103,16 @@
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\CouponController.cs" />
     <Compile Include="Controllers\CustomPackageController.cs" />
+    <Compile Include="Controllers\DecorationController.cs" />
+    <Compile Include="Controllers\DecorationsCategoryController.cs" />
+    <Compile Include="Controllers\FoodController.cs" />
     <Compile Include="Controllers\FoodsCategoryController.cs" />
+    <Compile Include="Controllers\LocationController.cs" />
+    <Compile Include="Controllers\LocationsCategoryController.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\PackageController.cs" />
     <Compile Include="Controllers\ReviewController.cs" />
+    <Compile Include="Controllers\StatsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

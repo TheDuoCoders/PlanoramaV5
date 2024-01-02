@@ -9,15 +9,15 @@ using System.Web.Http;
 
 namespace Planorama.Controllers
 {
-    public class NotificationController : ApiController
+    public class LocationsCategoryController : ApiController
     {
         [HttpGet]
-        [Route("api/notification/all")]
-        public HttpResponseMessage Notifications()
+        [Route("api/locationscategory/all")]
+        public HttpResponseMessage Foods()
         {
             try
             {
-                var data = NotificationService.Get();
+                var data = LocationsCategoryServices.Get();
                 return Request.CreateResponse(HttpStatusCode.OK, data);
             }
 
@@ -29,14 +29,14 @@ namespace Planorama.Controllers
         }
 
         [HttpGet]
-        [Route("api/notification/{id}")]
+        [Route("api/locationscategory/{id}")]
 
-        public HttpResponseMessage NotificationsByID(int id)
+        public HttpResponseMessage FoodsByID(int id)
         {
 
             try
             {
-                var data = NotificationService.Get(id);
+                var data = LocationsCategoryServices.Get(id);
                 if (data != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, data);
@@ -51,18 +51,17 @@ namespace Planorama.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
 
             }
-
         }
 
         [HttpPost]
-        [Route("api/notification/create")]
+        [Route("api/locationscategory/create")]
 
-        public HttpResponseMessage Create(NotificationDTO notification)
+        public HttpResponseMessage Create(LocationsCategoryDTO locationscategory)
         {
 
             try
             {
-                var data = NotificationService.Create(notification);
+                var data = LocationsCategoryServices.Create(locationscategory);
                 if (data)
                 {
                     return Request.CreateResponse(HttpStatusCode.Created, new { Msg = "Created" });
@@ -81,14 +80,14 @@ namespace Planorama.Controllers
         }
 
         [HttpPost]
-        [Route("api/notification/delete/{id}")]
+        [Route("api/locationscategory/delete/{id}")]
 
         public HttpResponseMessage Delete(int id)
         {
 
             try
             {
-                var data = NotificationService.Delete(id);
+                var data = LocationsCategoryServices.Delete(id);
                 if (data)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, new { Msg = "Deleted" });
@@ -102,6 +101,32 @@ namespace Planorama.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
 
+            }
+
+        }
+
+        [HttpGet]
+        [Route("api/locationlistbycategory/{id}")]
+
+        public HttpResponseMessage LocationListByCategory(int id)
+        {
+
+            try
+            {
+                var data = LocationsCategoryServices.GetLocationByCategory(id)
+        ;
+                if (data != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, data);
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, new { Msg = "Not Found!" });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
 
         }

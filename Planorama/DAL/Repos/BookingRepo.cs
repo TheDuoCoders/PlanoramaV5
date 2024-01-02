@@ -12,10 +12,18 @@ namespace DAL.Repos
     {
         public bool Create(Booking obj)
         {
+            db.Packages.Add(obj.Package);
             db.Bookings.Add(obj);
 
             if (db.SaveChanges() > 0)
             {
+                Notification notification = new Notification();
+                notification.Id = db.Notifications.Count() + 1;
+                notification.NotificationMessage = "New Booking Added by " + obj.OrderedBy.ToString();
+                notification.NotificationTime = DateTime.Now;
+                notification.NotifiedUser = "User-1";
+                db.Notifications.Add(notification);
+                db.SaveChanges();
                 return true;
             }
             else
@@ -28,7 +36,18 @@ namespace DAL.Repos
         {
             var ex = Read(id);
             db.Bookings.Remove(ex);
-            return db.SaveChanges() > 0;
+            if (db.SaveChanges() > 0)
+            {
+                Notification notification = new Notification();
+                notification.Id = db.Notifications.Count() + 1;
+                notification.NotificationMessage = id + "Booking Deleted, Id=" + id;
+                notification.NotificationTime = DateTime.Now;
+                notification.NotifiedUser = "User-1";
+                db.Notifications.Add(notification);
+                db.SaveChanges();
+                return true;
+            }
+            return false;
         }
 
         public List<Booking> Read()
@@ -47,6 +66,13 @@ namespace DAL.Repos
             db.Entry(ex).CurrentValues.SetValues(obj);
             if (db.SaveChanges() > 0)
             {
+                Notification notification = new Notification();
+                notification.Id = db.Notifications.Count() + 1;
+                notification.NotificationMessage = "Booking Updated, Id = " + obj.Id.ToString();
+                notification.NotificationTime = DateTime.Now;
+                notification.NotifiedUser = "User-1";
+                db.Notifications.Add(notification);
+                db.SaveChanges();
                 return true;
             }
 

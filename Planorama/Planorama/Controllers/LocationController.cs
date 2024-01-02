@@ -9,15 +9,15 @@ using System.Web.Http;
 
 namespace Planorama.Controllers
 {
-    public class NotificationController : ApiController
+    public class LocationController : ApiController
     {
         [HttpGet]
-        [Route("api/notification/all")]
-        public HttpResponseMessage Notifications()
+        [Route("api/location/all")]
+        public HttpResponseMessage Foods()
         {
             try
             {
-                var data = NotificationService.Get();
+                var data = LocationServices.Get();
                 return Request.CreateResponse(HttpStatusCode.OK, data);
             }
 
@@ -29,14 +29,14 @@ namespace Planorama.Controllers
         }
 
         [HttpGet]
-        [Route("api/notification/{id}")]
+        [Route("api/location/{id}")]
 
-        public HttpResponseMessage NotificationsByID(int id)
+        public HttpResponseMessage FoodsByID(int id)
         {
 
             try
             {
-                var data = NotificationService.Get(id);
+                var data = LocationServices.Get(id);
                 if (data != null)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, data);
@@ -51,18 +51,17 @@ namespace Planorama.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
 
             }
-
         }
 
         [HttpPost]
-        [Route("api/notification/create")]
+        [Route("api/location/create")]
 
-        public HttpResponseMessage Create(NotificationDTO notification)
+        public HttpResponseMessage Create(LocationDTO location)
         {
 
             try
             {
-                var data = NotificationService.Create(notification);
+                var data = LocationServices.Create(location);
                 if (data)
                 {
                     return Request.CreateResponse(HttpStatusCode.Created, new { Msg = "Created" });
@@ -79,16 +78,15 @@ namespace Planorama.Controllers
             }
 
         }
-
         [HttpPost]
-        [Route("api/notification/delete/{id}")]
+        [Route("api/location/delete/{id}")]
 
         public HttpResponseMessage Delete(int id)
         {
 
             try
             {
-                var data = NotificationService.Delete(id);
+                var data = LocationServices.Delete(id);
                 if (data)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, new { Msg = "Deleted" });

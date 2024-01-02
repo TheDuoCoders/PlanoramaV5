@@ -63,5 +63,18 @@ namespace BLL.Services
         {
             return DataAccessFactory.DecorationsCategoryData().Delete(decorationsCategoryId);
         }
+
+        public static DecorationCategoryDetailsDTO GetDecorationByCategory(int id)
+        {
+            var data = DataAccessFactory.DecorationsCategoryData().Read(id);
+            var cfg = new MapperConfiguration(c =>
+            {
+                c.CreateMap<DecorationsCategory, DecorationCategoryDetailsDTO>();
+                c.CreateMap<Decoration, DecorationDTO>();
+            });
+            var mapper = new Mapper(cfg);
+            var mapped = mapper.Map<DecorationCategoryDetailsDTO>(data);
+            return mapped;
+        }
     }
 }

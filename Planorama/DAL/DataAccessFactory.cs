@@ -89,5 +89,11 @@ namespace DAL
 
         }
 
+        public static IAuth<bool> AuthData()
+        {
+            return new UserRepo();
+
+        }
+
     }
 }

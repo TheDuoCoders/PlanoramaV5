@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="DataAccessFactory.cs" />
+    <Compile Include="Interfaces\IAuth.cs" />
     <Compile Include="Interfaces\IRepo.cs" />
     <Compile Include="Migrations\202401010704481_init_basiceFileAdded.cs" />
     <Compile Include="Migrations\202401010704481_init_basiceFileAdded.Designer.cs">

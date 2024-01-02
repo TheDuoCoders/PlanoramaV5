@@ -63,5 +63,18 @@ namespace BLL.Services
         {
             return DataAccessFactory.LocationsCategoryData().Delete(locationsCategoryId);
         }
+
+        public static LocationsCategoryDetailsDTO GetLocationByCategory(int id)
+        {
+            var data = DataAccessFactory.LocationsCategoryData().Read(id);
+            var cfg = new MapperConfiguration(c =>
+            {
+                c.CreateMap<LocationsCategory, LocationsCategoryDetailsDTO>();
+                c.CreateMap<Location, LocationDTO>();
+            });
+            var mapper = new Mapper(cfg);
+            var mapped = mapper.Map<LocationsCategoryDetailsDTO>(data);
+            return mapped;
+        }
     }
 }

@@ -64,6 +64,18 @@ namespace BLL.Services
             return DataAccessFactory.FoodsCategoryData().Delete(foodsCategoryId);
         }
 
-
+        //filter
+        public static FoodCategoryDetailsDTO GetFoodByCategory(int id)
+        {
+            var data = DataAccessFactory.FoodsCategoryData().Read(id);
+            var cfg = new MapperConfiguration(c =>
+            {
+                c.CreateMap<FoodsCategory, FoodCategoryDetailsDTO>();
+                c.CreateMap<Food, FoodDTO>();
+            });
+            var mapper = new Mapper(cfg);
+            var mapped = mapper.Map<FoodCategoryDetailsDTO>(data);
+            return mapped;
+        }
     }
 }

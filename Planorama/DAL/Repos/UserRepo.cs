@@ -8,13 +8,32 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class UserRepo : Repos, IRepo<User, string, bool>
+    internal class UserRepo : Repos, IRepo<User, string, bool> , IAuth<bool>
     {
+            public bool Authenticate(string username, string password)
+            {
+                var data = db.Users.FirstOrDefault(u => u.Uname.Equals(username) && password.Equals(password));
+                if (data != null)
+                {
+                    return true;
+                }
+                return false;
+            }
+
+        //-----------------------------USER REPO----------------------------
+
         public bool Create(User obj)
         {
             db.Users.Add(obj);
             if (db.SaveChanges() > 0)
             {
+                Notification notification = new Notification();
+                notification.Id = db.Notifications.Count() + 1;
+                notification.NotificationMessage = "New User Added";
+                notification.NotificationTime = DateTime.Now;
+                notification.NotifiedUser = "User-1";
+                db.Notifications.Add(notification);
+                db.SaveChanges();
                 return true;
             }
             return false;
@@ -24,7 +43,18 @@ namespace DAL.Repos
         {
             var ex = Read(id);
             db.Users.Remove(ex);
-            return db.SaveChanges() > 0;
+            if (db.SaveChanges() > 0)
+            {
+                Notification notification = new Notification();
+                notification.Id = db.Notifications.Count() + 1;
+                notification.NotificationMessage = id + "User Deleted";
+                notification.NotificationTime = DateTime.Now;
+                notification.NotifiedUser = "User-1";
+                db.Notifications.Add(notification);
+                db.SaveChanges();
+                return true;
+            }
+            return false;
         }
 
         public List<User> Read()
@@ -43,9 +73,18 @@ namespace DAL.Repos
             db.Entry(ex).CurrentValues.SetValues(obj);
             if (db.SaveChanges() > 0)
             {
+                Notification notification = new Notification();
+                notification.Id = db.Notifications.Count() + 1;
+                notification.NotificationMessage = obj.Uname + "User Updated";
+                notification.NotificationTime = DateTime.Now;
+                notification.NotifiedUser = "User-1";
+                db.Notifications.Add(notification);
+                db.SaveChanges();
                 return true;
             }
             return false;
         }
+
+
     }
 }

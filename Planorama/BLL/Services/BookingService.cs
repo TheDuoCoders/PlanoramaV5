@@ -62,5 +62,20 @@ namespace BLL.Services
         {
             return DataAccessFactory.BookingData().Delete(bookingId);
         }
+
+        public static BookingUserPackageDTO BookingUserPackageDetails(int id)
+        {
+            var data = DataAccessFactory.BookingData().Read(id)
+;
+            var cfg = new MapperConfiguration(c =>
+            {
+                c.CreateMap<Booking, BookingUserPackageDTO>();
+                c.CreateMap<User, UserDTO>();
+                c.CreateMap<Package, PackageDTO>();
+            });
+            var mapper = new Mapper(cfg);
+            var mapped = mapper.Map<BookingUserPackageDTO>(data);
+            return mapped;
+        }
     }
 }
